@@ -8,17 +8,18 @@ int main(){
 	cin >> x ;
 	cout << "string length: "<< endl;
 	cin >> y;
+	cin.ignore(); 
 
 	string *arr = new string[x]; 
 	for(int i = 0; i < x; i++){
 		string temp;
-		cin >> temp;
+		getline(cin, temp);
 		//check if the string length is less than y
 		while(temp.length() > y){
 			cout << "enter another string again:" << endl;
-			cin >> temp;
+			getline(cin, temp);
 		}
-		arr[i] = temp;
+		*(arr + i) = temp;
 		//test if the string is correctly being stored
 		//cout << arr[i] << endl;
 	}
@@ -27,9 +28,9 @@ int main(){
 	for(int i = x-1; i >= 0; i--){
 		for(int j = 0; j <= i-1; j++ ){
 			if((int(arr[j][0])) < (int(arr[j+1][0]))){ //compare the ascii code of the first letter in the string
-				string temp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = temp;
+				string temp = *(arr + j);
+				*(arr + j) = *(arr + j + 1);
+				*(arr + j + 1) = temp;
 			}
 		}
 	}

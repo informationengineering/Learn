@@ -17,24 +17,24 @@ int main(){
     }
 	
 	for(int i = 0; i < x; i++){
-        char temp[100];  // Temporary buffer for input string (adjust size if needed)
-        cin.getline(temp, 100);
+        char temp[100];
+        cin.getline(temp, 100); //100: the maximum num of characters to read 
 
-        // Check if the string length is less than y
+        // check if string length < y
         while(strlen(temp) > y){
             cout << "enter another string again: " << endl;
             cin >> temp;
         }
 
-        // Allocate memory for the current string
+        // reallocate memory
         arr[i] = (char*)malloc((strlen(temp) + 1) * sizeof(char)); // +1 for null terminator
-        strcpy(arr[i], temp); // Copy the string into the allocated memory
+        strcpy(arr[i], temp); 
     }
 	
 	//bubble sort
 	for(int i = x-1; i >= 0; i--){
 		for(int j = 0; j <= i-1; j++ ){
-			if((int(arr[j][0])) < (int(arr[j+1][0]))){ //compare the ascii code of the first letter in the string
+			if((int(arr[j][0])) < (int(arr[j+1][0]))){ 
 				char* temp = arr[j];
 				arr[j] = arr[j+1];
 				arr[j+1] = temp;
